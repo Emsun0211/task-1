@@ -1,11 +1,18 @@
 import express from "express";
 import * as dotenv from "dotenv";
+import cors from "cors";
 dotenv.config();
 
 import { z, ZodError } from "zod";
 import sheets, { SHEET_ID } from "./sheetClient.js";
 
 const app = express();
+
+app.use(
+	cors({
+		origin: "*",
+	})
+);
 
 const contactSchema = z.object({
 	fname: z
